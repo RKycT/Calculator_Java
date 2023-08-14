@@ -18,8 +18,17 @@ public class Main {
 
             if (Objects.equals(input, "stop") || Objects.equals(input, "Stop")) break;
 
-            if (String.valueOf(input.charAt(0)).equals("I") || String.valueOf(input.charAt(0)).equals("V") || String.valueOf(input.charAt(0)).equals("X")) {
-                input = Convert(input);
+            if (input.contains("I") || input.contains("V") || input.contains("X")) {
+                if (!input.contains("2") && !input.contains("3") &&
+                        !input.contains("4") && !input.contains("5") &&
+                        !input.contains("6") && !input.contains("7") &&
+                        !input.contains("8") && !input.contains("9") &&
+                        !input.contains("10") && !input.contains("1")){
+                    input = Convert(input);
+                } else {
+                    System.out.println("Input error: you shouldn't use roman & arabic numerals at the same time");
+                    continue;
+                }
             }
 
             System.out.println(calc(input));
@@ -230,12 +239,12 @@ public class Main {
                     break;
 
                 default:
-                    return "Operation exception: incorrect reading";
+                    return "Operation error: incorrect reading";
             }
 
         if (mark) {
             if ((input.contains("-") && a <= b) || (input.contains("/") && a < b))
-                return "Input exception: In roman numerals isn't available negative and zero value";
+                return "Input error: In roman numerals isn't available negative and zero value";
             else {
                 result = String.valueOf(
                     convBack(Integer.parseInt(result)));
